@@ -1,0 +1,35 @@
+O trabalho  deve ser um arquivo comprimido contendo (arquivo readme com o nome do ambiente onde o programa executa, arquivo fonte, executável do programa).
+
+Implemente o TAD Lista Linear Duplamente Encadeada (DLList)
+e o utilize para fazer um programa com os seguintes requisitos
+(obrigatório utilizar a mesma API):
+
+Defina uma estrutura do TIPO ESCOLHIDO ( tipo aluno, ou tipo disco, ou tipo Time, etc...) que
+tenha pelo menos os seguintes campos:
+-um campo char [30]
+-um campo inteiro
+-um campo float
+
+Implemente as seguintes operações:
+
+-criar uma colecao
+-Inserir um TIPO ESCOLHIDO na colecao
+-Remover um TIPO ESCOLHIDO na colecao identificado pelo campo char, int e float
+-Consultar um TIPO ESCOLHIDO na colecao identificado pelo campo char, int e float
+-listar os elementos na colecao.
+-destruir a coleção se estiver vazia.
+-esvaziar a colecão
+
+Importante: dentro do arquivo dll.c é proibido printf e scanf ou qualquer coisa similar. 
+
+O trabalho é individual
+
+Roteiro para teste:
+ Crie uma coleção
+ Insira tres elementos na coleção
+ Liste os elementos da Colecao
+ Consulte um dos elementos da coleçào
+ remova o segundo elemento inserido na colecao
+ Liste os elementos da coleçào
+ Esvazie a colecao
+ Liste os elementos da coleçào

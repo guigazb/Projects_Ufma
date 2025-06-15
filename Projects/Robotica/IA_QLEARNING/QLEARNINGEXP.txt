@@ -1,0 +1,115 @@
+Para abordar o problema descrito, vamos estruturá-lo seguindo os princípios de um problema de aprendizado por reforço com um ambiente dinâmico. Vamos definir os componentes necessários e o algoritmo apropriado para treinar o robô a encontrar o caminho mais curto até o destino, evitando colisões com um obstáculo móvel.
+
+### Definição dos Componentes do Problema
+
+1. **Agente**:
+   - O robô, que deve aprender a navegar até o destino sem colidir com o obstáculo.
+
+2. **Ambiente**:
+   - Um mapa 9x14 células.
+   - Posição inicial do robô e do obstáculo.
+   - Posição do destino (X).
+   - O obstáculo se move de forma aleatória na parte superior do mapa, retornando à posição superior quando atinge a borda inferior.
+
+3. **Ações**:
+   - O robô pode mover-se em quatro direções: para cima, para baixo, para a esquerda ou para a direita.
+   - Movimento de uma célula por vez.
+
+4. **Variáveis de Estado**:
+   - Posição atual do robô (coordenadas).
+   - Posição atual do obstáculo (coordenadas).
+   - Posição do destino.
+
+### Algoritmo de Aprendizado por Reforço
+
+Para resolver este problema, utilizaremos o algoritmo Q-Learning, que é adequado para ambientes onde o modelo do ambiente é desconhecido, mas pode ser interagido por meio de ações. Aqui estão os passos principais:
+
+- **Inicialização**:
+  - Inicialize a tabela Q com valores arbitrários ou zeros para todas as combinações estado-ação possíveis.
+  - Defina a taxa de aprendizado (α) e o fator de desconto (γ).
+
+- **Iteração**:
+  - Para cada episódio (tentativa de navegação até o destino):
+    - Inicie o robô em uma posição inicial.
+    - Escolha uma ação com base na política ε-greedy (exploração vs. exploração).
+    - Observe o próximo estado, a recompensa obtida e atualize a tabela Q:
+      \[
+      Q(s, a) \leftarrow (1 - \alpha) \cdot Q(s, a) + \alpha \cdot \left[ r + \gamma \cdot \max_{a'} Q(s', a') \right]
+      \]
+    - Atualize o estado atual do robô.
+    - Repita até o robô alcançar o destino ou ocorrer um número máximo de iterações.
+
+- **Exploração vs. Exploração**:
+  - A exploração é controlada por ε, que determina a probabilidade de escolher uma ação aleatória em vez da melhor ação conhecida.
+
+### Implementação
+
+A implementação será feita em Python, utilizando uma representação simplificada do ambiente e do agente. Aqui está um esboço básico de como poderia ser implementado:
+
+```python
+import random
+
+# Tamanho do mapa
+MAP_HEIGHT = 9
+MAP_WIDTH = 14
+
+# Posições iniciais do robô e do obstáculo
+robot_position = (0, 0)  # Exemplo de posição inicial do robô
+obstacle_position = (MAP_HEIGHT - 1, random.randint(0, MAP_WIDTH - 1))  # Inicia no topo aleatoriamente
+
+# Posição do destino
+destination_position = (7, 13)  # Exemplo de posição do destino
+
+# Q-Learning parâmetros
+alpha = 0.1  # Taxa de aprendizado
+gamma = 0.9  # Fator de desconto
+epsilon = 0.1  # Probabilidade de exploração inicial
+
+# Tabela Q inicializada com zeros
+Q = {}
+
+# Função para escolher a próxima ação com base na política ε-greedy
+def choose_action(state):
+    if random.uniform(0, 1) < epsilon:
+        return random.choice(actions)
+    else:
+        return max(actions, key=lambda a: Q.get((state, a), 0))
+
+# Função para atualizar a tabela Q com base na recompensa recebida
+def update_Q(state, action, reward, next_state):
+    old_value = Q.get((state, action), 0)
+    next_max = max(Q.get((next_state, a), 0) for a in actions)
+    new_value = (1 - alpha) * old_value + alpha * (reward + gamma * next_max)
+    Q[(state, action)] = new_value
+
+# Loop de treinamento (episódios)
+for episode in range(num_episodes):
+    # Reiniciar o estado inicial do robô e do obstáculo
+    robot_position = (0, 0)
+    obstacle_position = (MAP_HEIGHT - 1, random.randint(0, MAP_WIDTH - 1))
+    
+    while robot_position != destination_position:
+        # Escolher uma ação
+        action = choose_action(robot_position)
+        
+        # Executar a ação e observar o próximo estado e a recompensa
+        next_robot_position = move_robot(robot_position, action)
+        reward = calculate_reward(next_robot_position, obstacle_position, destination_position)
+        
+        # Atualizar a tabela Q
+        update_Q(robot_position, action, reward, next_robot_position)
+        
+        # Atualizar o estado atual do robô
+        robot_position = next_robot_position
+```
+
+### Considerações Finais
+
+- **Teste e Avaliação**:
+  - Após o treinamento, o desempenho do robô pode ser avaliado observando as ações escolhidas pela política aprendida para diferentes configurações de α e γ.
+  - A representação gráfica do caminho do robô e do obstáculo pode ser implementada para verificar visualmente o comportamento do sistema treinado.
+
+- **Ajuste de Parâmetros**:
+  - Experimente diferentes valores de α, γ e ε para encontrar a melhor combinação que otimize a convergência e o desempenho do agente.
+
+Este esboço fornece uma estrutura básica para abordar o problema descrito usando Q-Learning. A implementação real exigiria detalhes adicionais, como a definição das funções `move_robot`, `calculate_reward` e a representação gráfica para teste e visualização.

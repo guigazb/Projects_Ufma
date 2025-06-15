@@ -1,0 +1,24 @@
+Para implementar o algoritmo A* para planejamento de trajetória em um ambiente representado por um mapa baseado em grid, vamos seguir os passos abaixo. Vou assumir que estamos trabalhando em Python, uma linguagem comumente utilizada para tarefas de processamento de dados e algoritmos como esse.
+
+Passos para Implementação:
+Definição do Mapa:
+
+O mapa será representado por uma matriz onde cada célula pode ser 0 (livre) ou 1 (obstáculo).
+Precisamos definir a posição de origem (start) e destino (goal) da trajetória.
+Algoritmo A:*
+
+O algoritmo A* é um algoritmo de busca de caminho que utiliza heurísticas para garantir eficiência.
+Vamos definir funções para calcular distâncias (heurísticas) e implementar a lógica principal do algoritmo.
+Visualização:
+
+Após calcular a trajetória, vamos gerar uma representação visual do mapa, destacando a trajetória do início ao fim.
+
+Explicação do Código:
+mapa: É uma matriz binária que representa o ambiente.
+start e goal: São as coordenadas de origem e destino, respectivamente.
+movimentos: Define as ações possíveis (cima, baixo, esquerda, direita).
+heuristica: Função que calcula a distância heurística (Manhattan).
+pos_valida: Verifica se uma posição está dentro dos limites do mapa e é livre.
+a_star: Implementação do algoritmo A* para encontrar o caminho mais curto.
+Visualização: Usa matplotlib para mostrar o mapa com o caminho encontrado, marcando a posição inicial, final e o trajeto.
+Este código pode ser adaptado para diferentes tamanhos de mapa e configurações de origem/destino. Ele oferece uma visualização clara do planejamento de trajetória usando o algoritmo A*.

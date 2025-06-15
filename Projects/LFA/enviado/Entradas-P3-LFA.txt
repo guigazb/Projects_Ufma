@@ -1,0 +1,32 @@
+ Membros da equipe: 
+        1 - Guilherme Barrio Nascimento 
+        2 - Mayra Safira Costa Gomes 
+        3 - Edson Pinho Rabelo
+        4 - Nicolas Alexander Soares Oliveira
+
+input - a:
+Informe os estados do autômato:
+0, 1, 2
+Informe o estado inicial:
+0
+Informe a função programa: 
+0a1
+1a2 
+2ε1 
+1ε0 
+Informe os estados finais:
+2
+
+input - b:
+Informe os estados do autômato:
+0, 1, 2
+Informe o estado inicial:
+0
+Informe a função programa: 
+0a1
+1b2
+0ε2
+2ε1
+Informe os estados finais:
+2
+
