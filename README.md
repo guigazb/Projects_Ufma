@@ -5,7 +5,7 @@ This repository contains a collection of code implementations, exercises, and pr
 ## Contents
 - **Code Practices**: Solutions to programming exercises covering fundamental and advanced concepts in Computer Science.
 - **Projects**: Implementations of academic projects, including data structures (e.g., Binary Search, Bucket Sort, Counting Sort, Radix Sort, B-Tree, Graphs) and other coursework assignments.
-- **Technologies**: Primarily written in Java, with potential inclusions of other languages and tools used during the degree.
+- **Technologies**: Primarily written in C, Python and Java, with potential inclusions of other languages and tools used during the degree.
 
 ## Purpose
 This repository serves as a portfolio of my academic work, demonstrating my progress in mastering key computer science concepts and applying them to practical problems. It is intended for educational purposes and to share knowledge with the community.
